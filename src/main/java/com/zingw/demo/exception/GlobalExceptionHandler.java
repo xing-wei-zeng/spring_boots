@@ -1,7 +1,6 @@
 package com.zingw.demo.exception;
 
 import com.zingw.demo.controller.I18nController;
-import com.zingw.demo.dto.ErrorDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

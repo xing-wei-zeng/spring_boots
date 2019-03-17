@@ -45,6 +45,7 @@ public class MovieController {
      * @return
      */
     @PostMapping(value = "/addmovies")
+    @SystemControllerLog(description = "添加一部电影")
     public Movies insertMovie(@Valid Movies movies,BindingResult bindingResult){
         return movieService.insertMovie(movies);
     }
