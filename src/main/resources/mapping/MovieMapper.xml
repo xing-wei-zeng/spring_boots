@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zingw.demo.mapper.MovieMapper" >
+    <!--通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+         <resultMap type="com.zingw.demo.pojo.Movies" id="moviesResultMap">
+             <!-- 用result属性来映射非主键字段 -->
+             <result property="createDate" column="create_date"/>
+             <result property="name" column="name"/>
+             <result property="photo" column="photo"/>
+         </resultMap>
+    <select id="findAllMovie" resultMap="moviesResultMap">
+        SELECT * FROM movie
+    </select>
+    
+    <insert id="insertMovie" parameterType="com.zingw.demo.pojo.Movies" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO movie (`id`,`create_date`,`name`, `photo`) VALUES (#{id},#{createDate}, #{name}, #{photo});
+    </insert>
+
+    <select id="getMovieByname" resultMap="moviesResultMap">
+        SELECT * FROM movie WHERE POSITION('${value}' IN name)
+    </select>
+
+    <update id="updataMovie" parameterType="com.zingw.demo.pojo.Movies">
+        UPDATE movie SET movie.create_date=#{createDate},movie.name=#{name},movie.photo=#{photo} WHERE movie.id=#{id}
+    </update>
+    
+    <delete id="deleteMovieById" parameterType="int">
+        DELETE FROM `movie` WHERE `id`=#{id}
+    </delete>
+</mapper>
