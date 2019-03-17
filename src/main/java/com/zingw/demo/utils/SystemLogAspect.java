@@ -29,10 +29,8 @@ import java.util.Date;
 @Component
 @SuppressWarnings("all")
 public class SystemLogAspect {
-    //注入Service用于把日志保存数据库，实际项目入库采用队列做异步
     @Resource
     private SaveLogService saveLogService;
-    //本地异常日志记录对象
     private static final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
     //Controller层切点
     @Pointcut("@annotation(com.zingw.demo.controller.SystemControllerLog)")
